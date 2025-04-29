@@ -6,11 +6,29 @@ export const AuthController = igniter.controller({
   path: "/auth",
   actions: {
     signIn: igniter.mutation({
-      method: "POST",
       path: "/sign-in",
+      method: "POST",
       use: [AuthFeatureProcedure()],
       handler: async ({ response, context }) => {
         const result = await context.auth.signIn();
+        return response.success(result);
+      },
+    }),
+    getSession: igniter.query({
+      path: "/session",
+      method: "GET",
+      use: [AuthFeatureProcedure()],
+      handler: async ({ response, context }) => {
+        const result = await context.auth.getSession();
+        return response.success(result);
+      },
+    }),
+    signOut: igniter.mutation({
+      path: "/sign-out",
+      method: "POST",
+      use: [AuthFeatureProcedure()],
+      handler: async ({ response, context }) => {
+        const result = await context.auth.signOut();
         return response.success(result);
       },
     }),

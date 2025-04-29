@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-
 import { Geist, Geist_Mono } from "next/font/google";
 import { IgniterProvider } from '@igniter-js/core/client'
 import { ThemeProvider } from "@/providers/theme-provider";
@@ -20,7 +19,7 @@ export const metadata: Metadata = {
   description: "A customizable boilerplate for Igniter.js applications",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
