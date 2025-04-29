@@ -7,7 +7,7 @@ export const GithubFeatureProcedure = igniter.procedure({
   handler: async (_, { request, context }) => {
     return {
       github: {
-        getRepos: async () => {
+        getRepositories: async () => {
           const session = await context.providers.auth.api.getSession({
             headers: request.headers,
           });

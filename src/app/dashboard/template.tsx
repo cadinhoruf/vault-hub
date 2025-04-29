@@ -38,11 +38,7 @@ export default async function Template({
               <BreadcrumbPathname />
             </div>
           </header>
-          <main className="p-4 h-full">
-            <Card className="w-full h-full">
-              <CardContent>{children}</CardContent>
-            </Card>
-          </main>
+          <main className="p-4 h-full">{children}</main>
         </SidebarInset>
       </SidebarProvider>
     </ThemeProvider>

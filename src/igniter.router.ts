@@ -27,5 +27,7 @@ export const AppRouter = igniter.router({
   controllers: {
     auth: controllers.AuthController,
     github: controllers.GithubController,
+    project: controllers.ProjectController,
+    projectEnvironments: controllers.ProjectEnvironmentsController,
   },
 });

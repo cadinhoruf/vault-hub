@@ -1,9 +1,15 @@
-import { Repos } from "@/features/github/presentation/components/repos";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ProjectCard } from "@/features/project/presentation/components/project-card";
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
   return (
-    <div>
-      <Repos />
-    </div>
+    <Card className="h-full">
+      <CardHeader>
+        <CardTitle>Meus Projetos</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <ProjectCard />
+      </CardContent>
+    </Card>
   );
 }

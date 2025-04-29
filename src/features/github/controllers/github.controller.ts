@@ -5,12 +5,12 @@ export const GithubController = igniter.controller({
   name: "github",
   path: "/github",
   actions: {
-    getRepos: igniter.query({
+    getRepositories: igniter.query({
       path: "/repos",
       method: "GET",
       use: [GithubFeatureProcedure()],
       handler: async ({ response, context }) => {
-        const result = await context.github.getRepos();
+        const result = await context.github.getRepositories();
         return response.success(result);
       },
     }),
