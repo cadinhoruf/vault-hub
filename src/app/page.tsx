@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { LoginForm } from "@/features/auth/presentation/components/login-form";
 import { Logo } from "@/components/logo";
+import { api } from "@/igniter.client";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Login | VaultHub",
@@ -8,7 +10,11 @@ export const metadata: Metadata = {
     "Faça login no VaultHub para gerenciar suas variáveis de ambiente na nuvem.",
 };
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await api.auth.getSession.query();
+  if (session.data) {
+    redirect("/dashboard/projects");
+  }
   return (
     <div className="relative flex flex-col justify-center items-center md:grid lg:grid-cols-2 lg:px-0 lg:max-w-none h-screen container">
       <div className="hidden relative lg:flex flex-col bg-muted p-10 dark:border-r h-full text-white">
