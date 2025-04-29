@@ -7,7 +7,7 @@ export const navData = [
       {
         title: "Repositórios",
         icon: FolderCode,
-        url: "/dashboard/repositories",
+        url: "/dashboard/projects",
       },
     ],
   },
