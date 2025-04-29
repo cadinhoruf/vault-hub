@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { IgniterProvider } from '@igniter-js/core/client'
+import { IgniterProvider } from "@igniter-js/core/client";
 import { ThemeProvider } from "@/providers/theme-provider";
-import "./globals.css"
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,16 +29,16 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <IgniterProvider>
+        <IgniterProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
             {children}
-          </IgniterProvider>
-        </ThemeProvider>
+          </ThemeProvider>
+        </IgniterProvider>
       </body>
     </html>
   );

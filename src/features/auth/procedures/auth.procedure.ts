@@ -1,4 +1,5 @@
 import { igniter } from "@/igniter";
+import { redirect } from "next/navigation";
 
 export const AuthFeatureProcedure = igniter.procedure({
   name: "AuthFeatureProcedure",
@@ -7,9 +8,10 @@ export const AuthFeatureProcedure = igniter.procedure({
       auth: {
         signIn: async () => {
           const result = await context.providers.auth.api.signInSocial({
+            headers: request.headers,
             body: {
               provider: "github",
-              callbackURL: `${process.env.IGNITER_APP_URL}/api/auth/callback/github`,
+              callbackURL: `${process.env.NEXT_PUBLIC_IGNITER_APP_URL}/api/auth/callback/github`,
             },
           });
           return result;

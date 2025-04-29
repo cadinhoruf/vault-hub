@@ -21,9 +21,8 @@ export default async function Template({
   const cookieStore = await cookies();
   const defaultOpen = cookieStore.get("sidebar_state")?.value === "true";
 
-  const session = await api.auth.getSession.query();
-
-  if (!session) {
+  const { data } = await api.auth.getSession.query();
+  if (!data) {
     redirect("/");
   }
 

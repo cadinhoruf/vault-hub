@@ -21,7 +21,7 @@ import { createIgniterAppContext } from "./igniter.context";
  * })
  */
 export const AppRouter = igniter.router({
-  baseURL: process.env.IGNITER_APP_URL,
+  baseURL: process.env.NEXT_PUBLIC_IGNITER_APP_URL,
   basePATH: process.env.IGNITER_APP_BASE_PATH,
   context: createIgniterAppContext,
   controllers: {

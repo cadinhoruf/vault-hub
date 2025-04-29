@@ -1,34 +1,41 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Icons } from "@/components/icons"
-import { api } from "@/igniter.client"
-import { toast } from "sonner"
+import type React from "react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Icons } from "@/components/icons";
+import { toast } from "sonner";
+import { authClient } from "@/providers/auth-client";
 
 export function LoginForm() {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const router = useRouter()
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  async function handleLogin(event: React.SyntheticEvent) {
-    event.preventDefault()
-    const response = await api.auth.signIn.mutate();
-    if(response.error) {
-     toast.error(response.error.data as string)
+  const handleLogin = async () => {
+    setIsLoading(true);
+    try {
+      const { error } = await authClient.signIn.social({
+        provider: "github",
+      });
+      if (error) {
+        throw new Error(error.message as string);
+      }
+    } catch (error) {
+      console.error("Erro detalhado:", error);
+      toast.error("Erro ao fazer login com GitHub");
+    } finally {
+      setIsLoading(false);
     }
-    if(response.data) {
-      toast.success("Login realizado com sucesso")
-      router.push("/dashboard")
-    }
-    setIsLoading(true)
-  }
+  };
 
   return (
     <div className="gap-6 grid">
-      <Button className="cursor-pointer" variant="outline" type="button" disabled={isLoading} onClick={handleLogin}>
+      <Button
+        className="cursor-pointer"
+        variant="outline"
+        type="button"
+        disabled={isLoading}
+        onClick={handleLogin}
+      >
         {isLoading ? (
           <Icons.spinner className="mr-2 w-4 h-4 animate-spin" />
         ) : (
@@ -37,5 +44,5 @@ export function LoginForm() {
         GitHub
       </Button>
     </div>
-  )
+  );
 }
