@@ -1,6 +1,6 @@
-import { AuthController } from "./features/auth/controllers/auth.controller";
 import { igniter } from "./igniter";
 import { createIgniterAppContext } from "./igniter.context";
+import { controllers } from "./features";
 
 /**
  * @description Initialize the Igniter Router with controllers and context
@@ -25,6 +25,7 @@ export const AppRouter = igniter.router({
   basePATH: process.env.IGNITER_APP_BASE_PATH,
   context: createIgniterAppContext,
   controllers: {
-    auth: AuthController,
+    auth: controllers.AuthController,
+    github: controllers.GithubController,
   },
 });

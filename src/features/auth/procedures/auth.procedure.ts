@@ -1,5 +1,4 @@
 import { igniter } from "@/igniter";
-import { redirect } from "next/navigation";
 
 export const AuthFeatureProcedure = igniter.procedure({
   name: "AuthFeatureProcedure",
