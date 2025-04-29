@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronsUpDown, LogOut, Palette } from "lucide-react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,13 +17,13 @@ import {
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/hooks/use-theme";
 import { api } from "@/igniter.client";
+import { useSession } from "@/hooks/use-session";
 
 export function NavUser() {
   const router = useRouter();
   const { isMobile } = useSidebar();
   const { toggleTheme } = useTheme();
-  const session = api.auth.getSession.useQuery();
-  const user = session.data?.user;
+  const { user } = useSession();
   const handleLogout = async () => {
     await api.auth.signOut.mutate();
     router.push("/");
@@ -40,7 +40,11 @@ export function NavUser() {
             >
               <Avatar className="rounded-lg w-8 h-8">
                 <AvatarFallback className="rounded-lg">
-                  {user?.name?.charAt(0)}
+                  {user?.image ? (
+                    <AvatarImage src={user.image} className="rounded-full" />
+                  ) : (
+                    user?.name?.charAt(0)
+                  )}
                 </AvatarFallback>
               </Avatar>
               <div className="flex-1 grid text-sm text-left leading-tight">
