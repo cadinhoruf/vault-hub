@@ -1,39 +1,41 @@
-'use client'
+"use client";
 
-import { type LucideIcon } from 'lucide-react'
+import { type LucideIcon } from "lucide-react";
 import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem
-} from '@/components/ui/sidebar'
-import { usePathname } from 'next/navigation'
-import Link from 'next/link'
-import { cn } from '@/lib/utils'
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export function NavMain({
-  data
+  data,
 }: {
   data: {
-    title: string
+    title: string;
     items?: {
-      title: string
-      url: string
-      icon?: LucideIcon
-      isActive?: boolean
-    }[]
-  }[]
+      title: string;
+      url: string;
+      icon?: LucideIcon;
+      isActive?: boolean;
+    }[];
+  }[];
 }) {
-  const pathname = usePathname()
+  const pathname = usePathname();
   return (
     <>
-      {data.map(item => (
+      {data.map((item) => (
         <SidebarGroup key={item.title}>
-          <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
+          <SidebarGroupLabel className="font-semibold">
+            {item.title}
+          </SidebarGroupLabel>
           <SidebarMenu>
-            {item.items?.map(subItem => {
-              const isActive = pathname.startsWith(subItem.url)
+            {item.items?.map((subItem) => {
+              const isActive = pathname.startsWith(subItem.url);
               return (
                 <SidebarMenuItem key={subItem.title}>
                   <Link href={subItem.url}>
@@ -41,7 +43,7 @@ export function NavMain({
                       tooltip={subItem.title}
                       className={cn(
                         isActive &&
-                          'bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground'
+                          "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground"
                       )}
                     >
                       {subItem.icon && <subItem.icon />}
@@ -49,11 +51,11 @@ export function NavMain({
                     </SidebarMenuButton>
                   </Link>
                 </SidebarMenuItem>
-              )
+              );
             })}
           </SidebarMenu>
         </SidebarGroup>
       ))}
     </>
-  )
+  );
 }

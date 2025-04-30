@@ -11,14 +11,20 @@ import { Button } from "@/components/ui/button";
 import { navData } from "@/components/nav-data";
 import { NavUser } from "./nav-user";
 import { NavMain } from "./nav-main";
+import Link from "next/link";
 
 export function AppSidebar({ ...props }) {
   return (
     <Sidebar collapsible="icon" variant="sidebar" {...props}>
       <SidebarHeader>
-        <Button variant="ghost" size="icon">
-          <Logo className="w-6 h-6" />
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="icon">
+            <Link href="/">
+              <Logo className="w-6 h-6" />
+            </Link>
+          </Button>
+          <h1 className="font-bold text-lg">Vault Hub</h1>
+        </div>
       </SidebarHeader>
       <SidebarContent>
         <NavMain data={navData} />

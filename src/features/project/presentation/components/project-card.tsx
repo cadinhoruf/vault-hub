@@ -11,12 +11,17 @@ import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import { ProjectNameLink } from "./project-name-href";
 import { getProjectData } from "../utils/get-project-data";
-import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Project } from "../..";
 import { ProjectEnvironments } from "@/features/projectenvironments";
 import { GitHubRepo } from "@/features/github/presentation/utils/types";
-
+import { EnvironmentVariablesDialog } from "./environment-variables-dialog";
+import { useState } from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 type ProjectCardProps = {
   repository: GitHubRepo;
   projectsList: Project[];
@@ -33,10 +38,11 @@ export function ProjectCard({
     projectsList,
     environmentsList
   );
+  const [open, setOpen] = useState(false);
 
   return (
-    <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.2 }}>
-      <Card className="flex flex-col border-muted/60 hover:border-primary/20 h-full overflow-hidden transition-colors">
+    <>
+      <Card className="flex flex-col border-muted hover:border-primary/50 h-full overflow-hidden transition-colors">
         <CardHeader className="flex flex-row items-center gap-2 pb-2">
           <Icons.gitHub className="w-5 h-5 text-muted-foreground" />
           <CardTitle className="font-medium text-lg">
@@ -75,23 +81,51 @@ export function ProjectCard({
         </CardContent>
         <CardFooter className="bg-muted/10 pt-4 border-t">
           <div className="flex gap-2 w-full">
-            <Button variant="outline" size="sm" className="cursor-pointer">
-              <Icons.keyRound className="mr-2 w-4 h-4" />
-              <span>Variáveis</span>
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              className="px-3 cursor-pointer"
-              onClick={() => {
-                window.open(repository.html_url, "_blank");
-              }}
-            >
-              <Icons.externalLink className="w-4 h-4" />
-            </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="cursor-pointer"
+                  onClick={() => setOpen(true)}
+                >
+                  <Icons.keyRound className="mr-2 w-4 h-4" />
+                  <span>Variáveis</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Gerenciar variáveis de ambiente</p>
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="px-3 cursor-pointer"
+                  onClick={() => {
+                    window.open(repository.html_url, "_blank");
+                  }}
+                >
+                  <Icons.externalLink className="w-4 h-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Abrir repositório</p>
+              </TooltipContent>
+            </Tooltip>
           </div>
         </CardFooter>
       </Card>
-    </motion.div>
+
+      <EnvironmentVariablesDialog
+        open={open}
+        onOpenChange={setOpen}
+        projectId={repository.id.toString()}
+        projectName={repository.name}
+        environmentVariables={environmentsList}
+        onSave={() => {}}
+      />
+    </>
   );
 }

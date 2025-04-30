@@ -7,6 +7,13 @@ import {
   Plus,
   Cloud,
   ExternalLink,
+  AlertCircle,
+  Copy,
+  Eye,
+  EyeOff,
+  Save,
+  Trash2,
+  Check,
 } from "lucide-react";
 
 export const Icons = {
@@ -18,4 +25,11 @@ export const Icons = {
   plus: Plus,
   cloud: Cloud,
   externalLink: ExternalLink,
+  alertCircle: AlertCircle,
+  copy: Copy,
+  eye: Eye,
+  eyeOff: EyeOff,
+  save: Save,
+  trash2: Trash2,
+  check: Check,
 };

@@ -2,16 +2,10 @@
 
 import { Icons } from "@/components/icons";
 import { GithubNewProjectButton } from "./github-new-project-button";
-import { motion } from "framer-motion";
 
 export function ProjectsEmptyState() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="flex flex-col justify-center items-center gap-6 px-4 py-20 border border-dashed rounded-lg w-full h-full"
-    >
+    <div className="flex flex-col justify-center items-center gap-6 px-4 py-20 border border-dashed rounded-lg w-full h-full">
       <div className="flex flex-col justify-center items-center gap-4 text-center">
         <div className="bg-muted p-4 rounded-full">
           <Icons.cloud className="w-10 h-10 text-muted-foreground" />
@@ -25,6 +19,6 @@ export function ProjectsEmptyState() {
         </div>
       </div>
       <GithubNewProjectButton />
-    </motion.div>
+    </div>
   );
 }
