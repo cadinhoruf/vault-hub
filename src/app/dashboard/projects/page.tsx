@@ -13,8 +13,8 @@ export default async function ProjectsPage() {
         <Suspense
           fallback={
             <div className="flex justify-center items-center gap-2 h-full text-muted-foreground">
-              <Icons.spinner className="w-4 h-4 animate-spin" />
               <p>Carregando...</p>
+              <Icons.spinner className="w-4 h-4 animate-spin" />
             </div>
           }
         >
