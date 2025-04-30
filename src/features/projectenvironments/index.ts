@@ -1,5 +1,5 @@
-'server-only'
+"server-only";
 
-export * from './controllers/project-environments.controller';
-export * from './procedures/project-environments.procedure';
-export * from './project-environments.interface'; 
+export * from "./controllers/projectenvironments.controller";
+export * from "./procedures/projectenvironments.procedure";
+export * from "./projectenvironments.interface";

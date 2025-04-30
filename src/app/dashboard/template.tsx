@@ -8,7 +8,6 @@ import { cookies } from "next/headers";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Separator } from "@/components/ui/separator";
 import { ThemeProvider } from "next-themes";
-import { Card, CardContent } from "@/components/ui/card";
 import { BreadcrumbPathname } from "@/components/breadcrumb-pathname";
 import { api } from "@/igniter.client";
 import { redirect } from "next/navigation";

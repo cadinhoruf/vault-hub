@@ -1,4 +1,13 @@
-import { Loader2, Github, Book, KeyRound, GitBranch } from "lucide-react";
+import {
+  Loader2,
+  Github,
+  Book,
+  KeyRound,
+  GitBranch,
+  Plus,
+  Cloud,
+  ExternalLink,
+} from "lucide-react";
 
 export const Icons = {
   spinner: Loader2,
@@ -6,4 +15,7 @@ export const Icons = {
   book: Book,
   keyRound: KeyRound,
   gitBranch: GitBranch,
+  plus: Plus,
+  cloud: Cloud,
+  externalLink: ExternalLink,
 };
